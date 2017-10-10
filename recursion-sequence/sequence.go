@@ -42,6 +42,23 @@ func sequence2(lower, upper int) {
 	}
 }
 
+// sequence3: recursive function to return a number sequence
+func sequence3(lower, upper int) {
+
+	if lower > upper {
+		// invalid case 
+		return
+	} else if lower == upper {
+		// we are at peak of sequence
+		fmt.Print(upper, " ")
+	} else {
+		fmt.Print(lower, " ")
+		// recurse toward upper
+		sequence(lower + 1, upper)
+		fmt.Print(lower, " ")
+	}
+}
+
 func main() {
 	sequence(3, 7)
 	fmt.Println()

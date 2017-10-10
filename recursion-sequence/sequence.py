@@ -21,3 +21,15 @@ def sequence(lower, upper):
         # recurse toward upper
         sequence(lower + 1, upper)
         print(lower, end=" ")
+
+def sequence2(lower, upper):
+    """sequence2: recursive function to return a number sequence"""
+
+    if lower > upper:
+        # invalid case 
+        return []
+    elif lower == upper:
+        # we are at peak of sequence
+        return [upper]
+    else:
+        return [lower] + sequence2(lower + 1, upper) + [lower]

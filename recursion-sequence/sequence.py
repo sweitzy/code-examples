@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+# Huh, python 2 on Mac has print()?  Is that expected?
 #!/usr/bin/python
 
 # sequence.py

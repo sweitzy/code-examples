@@ -8,7 +8,10 @@
 # function recursively until some condition is met.
 
 def sequence(lower, upper):
-    """sequence: recursive function to print a number sequence"""
+    """Print a number sequence using recursion.
+
+    Print from lower to upper and back down again.
+    """
 
     if lower > upper:
         # invalid case 
@@ -23,7 +26,10 @@ def sequence(lower, upper):
         print(lower, end=" ")
 
 def sequence2(lower, upper):
-    """sequence2: recursive function to return a number sequence"""
+    """Return list of a number sequence using recursion.
+
+    Build from lower to upper and back down again.
+    """
 
     if lower > upper:
         # invalid case 

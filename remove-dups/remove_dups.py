@@ -1,87 +1,101 @@
 #!/usr/bin/env python3
 
 # remove_dups.py
-#   NOTE: have to use uderscore for import to work
+#   NOTE: have to use underscore for import to work
 
 # Original question: write a function to return a copy of a list with duplicates removed
 
-# TODO: rename list_of_nums to sequence_of_nums since it can be list, tuple, what else???...
+def remove_dups(elems):
+    """Remove duplicate elems from a group of elements.
 
-def remove_dups(list_of_nums):
-    """Remove duplicate numbers from a list.
+    Return uniq elements in the order they first appear.
 
-    Return list of numbers with duplicates removed.
+    >>> print(remove_dups([2, 4, 5, 2, 5, 7, 2, 5, 6]))
+    [2, 4, 5, 7, 6]
+
+    >>> print(remove_dups(["a", "a", "b", "a", "c"]))
+    ['a', 'b', 'c']
     """
 
-    # TODO: can I make this generic for any type?
-    list_uniq = []
+    # list of unique elements
+    output = []
 
-    # nums we have seen so far
+    # elements we have seen so far, for quick lookup
     seen = {}
 
     # BIG O:
-    #  O(n) to walk list_of_nums
+    #  O(n) to walk elems
     #  O(1) to look up in dictionary
 
-    # TODO: use a list comprehension
+    # TODO: can we use a list comprehension?
 
-    for num in list_of_nums:
-        # if num not read already, append num and mark as seen
-        if not num in seen:
-            list_uniq.append(num)
-            seen[num] = 1
+    for elem in elems:
+        # if elem not read already, append elem and mark as seen
+        if not elem in seen:
+            output.append(elem)
+            seen[elem] = 1
 
-    return list_uniq
+    return output
 
 
 # Second question: return the mth duplicate
 
-def collapse_dups(list_of_nums, m):
-    """Remove duplicate numbers from a list.
+def collapse_dups(elems, m):
+    """Remove duplicate elems from a group of elements, using the mth occurence.
 
-    Return list of numbers with duplicates removed.
+    Return uniq elements in the order they appear the mth time.
+
+    >>> print(collapse_dups([2, 4, 5, 2, 5, 7, 2, 5, 6], 1))
+    [2, 4, 5, 7, 6]
+    >>> print(collapse_dups([2, 4, 5, 2, 5, 7, 2, 5, 6], 2))
+    [4, 2, 5, 7, 6]
+    >>> print(collapse_dups([2, 2, 4, 5, 2, 5, 7, 2, 5, 6, 2], 1))
+    [2, 4, 5, 7, 6]
+    >>> print(collapse_dups([2, 2, 4, 5, 2, 5, 7, 2, 5, 6, 2], 3))
+    [4, 2, 7, 5, 6]
     """
 
-    # TODO: can I make this generic for any type?
+    # list of unique elements
     output = []
 
-    # nums we have seen so far
+    # elements we have seen so far, for quick lookup
     seen = {}
 
-    # place where each num is in output
+    # place where each element is in output
     place = {}
 
     # BIG O:
-    #  O(n) to walk list_of_nums
-    #  O(1) if dictionary is implemented efficiently (TODO: is it?)
+    #  O(n) to walk elems
+    #  O(1) to look up in dictionary
+    #  O(n) to shift output
 
-    # TODO: use a list comprehension
-
-    for num in list_of_nums:
-        # if num not read already, append num and mark as seen
-        if not num in seen:
-            output.append(num)
-            seen[num] = 1
-            place[num] = len(output) - 1
-            print("DEBUG: first time", output)
+    for elem in elems:
+        # if elem not read already, append elem and mark as seen
+        if not elem in seen:
+            output.append(elem)
+            seen[elem] = 1
+            place[elem] = len(output) - 1
+#            print('DEBUG: first time', output)
         else:
-            seen[num] += 1
-            if seen[num] <= m:
-                print("DEBUG: have seen", num)
-                del(output[place[num]])
-                print("DEBUG: output now", output)
+            seen[elem] += 1
+            if seen[elem] <= m:
+#                print('DEBUG: have seen', elem, ', deleting ', place[elem])
+                del(output[place[elem]])
+#                print('DEBUG: output1 now', output)
                 # we have to rebuild place
-                for x in range(place[num], len(output)):
-                    print("DEBUG: rebuild", x)
+                for x in range(place[elem], len(output)):
+#                    print('DEBUG: rebuild', x)
                     place[output[x]] = x
-                output.append(num)
-                place[num] = len(output)
+                output.append(elem)
+                place[elem] = len(output) - 1
+#                print('DEBUG: output2 now', output)
 
     return output
 
-# TODO: use Python unit test ability to test this
-
-# TODO: do we want anything in main?
-if __name__ == "__main__":
+# validate documentation tests
+if __name__ == '__main__':
     first = [2, 4, 5, 2, 5, 7, 2, 5, 6]
 
+    print('Entering main, running doctest.')
+    import doctest
+    doctest.testmod()

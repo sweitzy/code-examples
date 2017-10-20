@@ -29,7 +29,7 @@ def remove_dups(elems):
     #  O(n) to walk elems, TIMES
     #  O(1) to look up in dictionary
 
-    # TODO: can we use a list comprehension?
+    # TODO: can we use a list comprehension?  I don't think so
 
     for elem in elems:
         # if elem not read already, append elem and mark as seen
@@ -95,6 +95,9 @@ def collapse_dups(elems, m):
 #                print('DEBUG: output2 now', output)
 
     return output
+
+# After the interview, I worked on making it as fast as possible.
+# I was able to go from O(n * n) to O(n)
 
 from double_list import *
     

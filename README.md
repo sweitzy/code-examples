@@ -10,9 +10,11 @@ I hope these examples help spark others to ramp up or ramp back up their develop
 
 I started using RCS in 1986 and still use it for controlling /etc files.  I have used CVS since it first came out, but it does not scale well.  SVN is better but still does not scale very well (Cisco had to switch to a WAN implementation to SVN for SJC/BLR usage, but that version seemed to have constant problems).  Git has an interesting history that is an entertaining read, and it intentionally does not work like CVS/SVN.  This has made it a little harder to get used to for me.
 
-Github is free if you are willing to have all your files visible to everyone.  Your github will also show up in Google searches, which I wanted.
+Github is free if you are willing to have all your files visible to everyone.  Your Github account will also show up in Google searches, which I wanted.
 
-Take some time writing .mk Markdown files.
+Take some time writing .md Markdown files, they are easy to edit/preview/debug in Github.
+
+There is a free Git book online at https://git-scm.com/book
 
 ## Spend Some Time Programming
 

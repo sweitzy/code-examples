@@ -20,7 +20,7 @@ There is a free Git book online at https://git-scm.com/book
 
 When I started my career, the best place to learn was at the Computer Literacy bookstores.  Now everything is online, but I still like buying books sometimes.  But I haven't needed to buy books or take online courses to get ramped up on new languages.
 
-The Python online tutorial is good.  The Go online tutorial is even better.
+The Python online tutorial https://docs.python.org/3/tutorial/ is good.  The Go online tutorial https://tour.golang.org is even better.
 
 ## Get a Free AWS Account
 

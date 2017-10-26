@@ -25,3 +25,5 @@ The Python online tutorial https://docs.python.org/3/tutorial/ is good.  The Go 
 ## Get a Free AWS Account
 
 Just like github is free, AWS offers a free tier for one year.  I was able to get a RHEL VM running in less than 5 minutes, although the VM creation wizard did not configure firewall correctly.   These VMs are great places to run your new code.
+
+Download some open source test tools, install gcc/g++, compile and run your test tools on/between your VMs.

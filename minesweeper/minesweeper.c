@@ -11,8 +11,8 @@
 typedef int BOOL;
 
 /* base parameters of game */
-/* NOTE: these are hard-code, could be params */
-/* NOTE: iOS version keeps track of time, pretty cool */ 
+/* TODO: these are hard-code, could be params */
+/* NOTE: iOS version of this game keeps track of time, pretty cool */ 
 int numRows = 9;
 int numCols = 9;
 int numBombs = 10;
@@ -107,16 +107,11 @@ void incrAdjBombs(int row, int col) {
 void initBoard() {
   int row, col;  /* loop variables */
 
-#if 0
-  /* 2D array */
-  theBoard = calloc(numRows * numCols, sizeof(BoardCell));
-#else
-  /* TODO: have to referesh my memory on NON-ragged arrays in C, I'm amazed this works! */
   theBoard = malloc(numRows * sizeof(BoardCell *));
   for (row = 0; row < numRows; row++) {
     theBoard[row] = calloc(numCols, sizeof(BoardCell));
   }
-#endif
+
   //  printf("theBoard %p\n", theBoard);
   //  printf("theBoard[0] %p\n", theBoard[0]);
   //  printf("theBoard[4] %p\n", theBoard[4]);

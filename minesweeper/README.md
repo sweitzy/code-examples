@@ -2,7 +2,7 @@
 
 I took a programming quiz early on during my job search at http://www.triplebyte.com.  I was not ready to pursue programming full time, so I didn't follow up more, but it was good food for thought.
 
-At https://triplebyte.com/static/interview_guide_2h_v2, they had this section.
+At https://triplebyte.com/static/interview_guide_2h_v2, they had this section below.  I got the minimal game working in C, I was not as rusty in C as I had feared.  This game code is very rough around the edges, I will admit.  I was unsure how long it would take to write, it wound up taking about 4 Pomodoros (https://en.wikipedia.org/wiki/Pomodoro_Technique) on my Mac while on an airplane, so it was not too long. 
 
 ## Programming
 

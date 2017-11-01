@@ -11,7 +11,7 @@
 typedef int BOOL;
 
 /* base parameters of game */
-/* TODO: these are hard-code, could be params */
+/* TODO: these are hard-coded, could be params */
 /* NOTE: iOS version of this game keeps track of time, pretty cool */ 
 int numRows = 9;
 int numCols = 9;
@@ -104,7 +104,7 @@ void incrAdjBombs(int row, int col) {
 
 /* ======================================================================== */
 /*..initBoard: init the board */
-void initBoard() {
+void initBoard(void) {
   int row, col;  /* loop variables */
 
   theBoard = malloc(numRows * sizeof(BoardCell *));
@@ -194,7 +194,7 @@ void initBoard() {
 
 /* ======================================================================== */
 /*..drawBoard: draw the board on the screen */
-void drawBoard() {
+void drawBoard(void) {
   int row, col;  /* loop variables */
 
   /* column header */
@@ -232,25 +232,36 @@ void drawBoard() {
 /* ======================================================================== */
 /*..getMove: get move from user */
 BOOL getMove(int *row, int *col) {
+  char line[80];
+
   *row = -1;
   *col = -1;
 
   printf("Enter move (row col): ");
   fflush(stdout);
-  /* TODO: read line and parse it, scanf is brittle? */
-  scanf("%d %d", row, col);
+
+  if (fgets(line, sizeof(line), stdin) == NULL) {
+    printf("INVALID MOVE\n");
+    return FALSE;
+  } 
+
+  if (sscanf(line, "%d %d", row, col) != 2) {
+    printf("INVALID MOVE\n");
+    return FALSE;
+  }
+
   printf("Got %d %d\n", *row, *col);
   if (*row >= 0 && *row < numRows && *col >= 0 && *col < numCols) {
     return TRUE;
   } else {
-    printf("INVALID MOVE");
+    printf("INVALID MOVE\n");
     return FALSE;
   }
 } /* getMove */
 
 /* ======================================================================== */
 /*..resetVisited: mark entier board as not visited */
-void resetVisited() {
+void resetVisited(void) {
   int row;
   int col;
 
@@ -290,7 +301,7 @@ void playMove(int row, int col) {
 
 /* ======================================================================== */
 /*..checkWin: check if only bombs are left */
-void checkWin() {
+void checkWin(void) {
   int row, col;
 
   for (row = 0; row < numRows; row++) {

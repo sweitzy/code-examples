@@ -67,7 +67,7 @@ void walkAdjCells(BOOL (*test_func)(int row, int col), void (*action_func)(int r
 
 #define TEST_ACTION(row, col) \
   if (test_func((row), (col))) { \
-    action_func((row), (col));	 \
+    action_func((row), (col)); \
   }
 
   /* diagonal upper left */
@@ -138,13 +138,12 @@ void initBoard() {
   }
 
   /* init the board */
-  /* TODO: cap style: why lower case for loop vars? */
   for (row = 0; row < numRows; row++) {
     for (col = 0; col < numCols; col++) {
       /* count the number of adjacent bombs */
       if (!theBoard[row][col].hasBomb) {
 
-#if 0 /* shoot have slightly differen usage */
+#if 0 /* shoot have slightly different usage */
 	walkAdjCells(checkCellBomb, incrAdjBombs, row, col);
 #else
 	/* diagonal upper left */
@@ -207,7 +206,7 @@ void drawBoard() {
 
   /* TODO: mode for displaying board correctly or debug */
 
-  /* NOTE: doesn't display rows/cols >= 10 very well */ 
+  /* TODO: doesn't display rows/cols >= 10 very well */ 
 
   for (row = 0; row < numRows; row++) {
 

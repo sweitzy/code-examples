@@ -1,4 +1,8 @@
-/* minesweeper.c: simple minesweeper game */
+/* 
+ * minesweeper.c: simple minesweeper game 
+ *
+ * See https://en.wikipedia.org/wiki/Minesweeper_(video_game)
+ */
 
 /* TODO: in some .h file? */
 #define TRUE 1
@@ -9,6 +13,9 @@
 
 /* boolean type for documentation */ 
 typedef int BOOL;
+
+/* TODO: read other implementations */
+
 
 /* base parameters of game */
 /* TODO: these are hard-coded, could be params */
@@ -22,7 +29,7 @@ int gameOver = FALSE;
 typedef struct BoardCell {
   BOOL hasBomb; /* TRUE/FALSE */
   int numAdjBombs; /* 0-8 */
-  BOOL visible; /* TRUE/FALSE: played or adjacent with no bombx */
+  BOOL visible; /* TRUE/FALSE: played or adjacent with no bombs */
   BOOL visited; /* TRUE/FALSE: for traversing board cells once */
 } BoardCell;
 
@@ -112,10 +119,7 @@ void initBoard(void) {
     theBoard[row] = calloc(numCols, sizeof(BoardCell));
   }
 
-  //  printf("theBoard %p\n", theBoard);
-  //  printf("theBoard[0] %p\n", theBoard[0]);
-  //  printf("theBoard[4] %p\n", theBoard[4]);
-
+  /* TODO: --norandom param */
 #if 0 /* better randomness */
   sranddev();
 #endif
@@ -260,7 +264,7 @@ BOOL getMove(int *row, int *col) {
 } /* getMove */
 
 /* ======================================================================== */
-/*..resetVisited: mark entier board as not visited */
+/*..resetVisited: mark entire board as not visited */
 void resetVisited(void) {
   int row;
   int col;

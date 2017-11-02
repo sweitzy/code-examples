@@ -4,6 +4,13 @@
  * See https://en.wikipedia.org/wiki/Minesweeper_(video_game)
  */
 
+/*
+ * Brief notes on coding style:
+ *  - mixed case with initial lower for static vars/funcs
+ *  - lower case with underscore for local params/vars
+ *  - // for one-line debug comments
+ */
+
 /* TODO: in some .h file? */
 #define TRUE 1
 #define FALSE 0
@@ -19,11 +26,11 @@ typedef int BOOL;
 
 /* base parameters of game */
 /* TODO: these are hard-coded, could be params */
-/* NOTE: iOS version of this game keeps track of time, pretty cool */ 
-int numRows = 9;
-int numCols = 9;
-int numBombs = 10;
-int gameOver = FALSE;
+/* TODO: iOS version of this game keeps track of time, pretty cool */ 
+static int numRows = 9;
+static int numCols = 9;
+static int numBombs = 10;
+static int gameOver = FALSE;
 
 /* one cell in the board */
 typedef struct BoardCell {
@@ -33,11 +40,11 @@ typedef struct BoardCell {
   BOOL visited; /* TRUE/FALSE: for traversing board cells once */
 } BoardCell;
 
-BoardCell **theBoard;
+static BoardCell **theBoard;
 
 /* ======================================================================== */
 /*..checkValidCell: check is a cell is valid */
-BOOL checkValidCell(int row, int col) {
+static BOOL checkValidCell(int row, int col) {
   if (row >= 0 && row < numRows && col >= 0 && col < numCols) {
     return TRUE;
   } else {
@@ -47,7 +54,7 @@ BOOL checkValidCell(int row, int col) {
 
 /* ======================================================================== */
 /*..checkCellBomb: check adjacent cell for a bomb */
-BOOL checkCellBomb(int row, int col) {
+static BOOL checkCellBomb(int row, int col) {
   if (checkValidCell(row, col) && theBoard[row][col].hasBomb) {
     return TRUE;
   } else {
@@ -57,12 +64,21 @@ BOOL checkCellBomb(int row, int col) {
 
 /* ======================================================================== */
 /*..checkCellClear: check adjacent cell for no adjacent bomb */
-BOOL checkCellClear(int row, int col) {
+static BOOL checkCellClear(int row, int col) {
   if (checkValidCell(row, col) \
       && !theBoard[row][col].hasBomb \
-      && 0 == theBoard[row][col].numAdjBombs \
       && FALSE == theBoard[row][col].visited) {
-    return TRUE;
+
+    /* non-bomb valid unvisited cell */
+    if (0 == theBoard[row][col].numAdjBombs) {
+      /* we want to play this next cell */
+      return TRUE;
+    } else {
+      /* this cell has adjacent bombs, don't play it but make it visible */
+      theBoard[row][col].visible = TRUE;
+      return FALSE;
+    }
+
   } else {
     return FALSE;
   }
@@ -70,7 +86,7 @@ BOOL checkCellClear(int row, int col) {
 
 /* ======================================================================== */
 /*..walkAdjCells: walk all adjacent cells, test and do action */
-void walkAdjCells(BOOL (*test_func)(int row, int col), void (*action_func)(int row, int col), int row, int col) {
+static void walkAdjCells(BOOL (*test_func)(int row, int col), void (*action_func)(int row, int col), int row, int col) {
 
 #define TEST_ACTION(row, col) \
   if (test_func((row), (col))) { \
@@ -105,13 +121,13 @@ void walkAdjCells(BOOL (*test_func)(int row, int col), void (*action_func)(int r
 
 /* ======================================================================== */
 /*..incrAdjBombs: increment adj bombs counter */
-void incrAdjBombs(int row, int col) {
+static void incrAdjBombs(int row, int col) {
   theBoard[row][col].numAdjBombs++;
 } /* incrAdjBombs */
 
 /* ======================================================================== */
 /*..initBoard: init the board */
-void initBoard(void) {
+static void initBoard(void) {
   int row, col;  /* loop variables */
 
   theBoard = malloc(numRows * sizeof(BoardCell *));
@@ -198,7 +214,7 @@ void initBoard(void) {
 
 /* ======================================================================== */
 /*..drawBoard: draw the board on the screen */
-void drawBoard(void) {
+static void drawBoard(void) {
   int row, col;  /* loop variables */
 
   /* column header */
@@ -235,7 +251,7 @@ void drawBoard(void) {
 
 /* ======================================================================== */
 /*..getMove: get move from user */
-BOOL getMove(int *row, int *col) {
+static BOOL getMove(int *row, int *col) {
   char line[80];
 
   *row = -1;
@@ -254,7 +270,7 @@ BOOL getMove(int *row, int *col) {
     return FALSE;
   }
 
-  printf("Got %d %d\n", *row, *col);
+  //  printf("Got %d %d\n", *row, *col);
   if (*row >= 0 && *row < numRows && *col >= 0 && *col < numCols) {
     return TRUE;
   } else {
@@ -265,7 +281,7 @@ BOOL getMove(int *row, int *col) {
 
 /* ======================================================================== */
 /*..resetVisited: mark entire board as not visited */
-void resetVisited(void) {
+static void resetVisited(void) {
   int row;
   int col;
 
@@ -278,7 +294,7 @@ void resetVisited(void) {
 
 /* ======================================================================== */
 /*..playMove: play move from user */
-void playMove(int row, int col) {
+static void playMove(int row, int col) {
 
   /* If user hit a bomb, game is over */
   if (theBoard[row][col].hasBomb) {
@@ -288,7 +304,7 @@ void playMove(int row, int col) {
     return;
   }
 
-  printf("playMove %d %d\n", row, col);
+  //  printf("playMove %d %d\n", row, col);
 
   theBoard[row][col].visible = TRUE;
   theBoard[row][col].visited = TRUE;
@@ -305,7 +321,7 @@ void playMove(int row, int col) {
 
 /* ======================================================================== */
 /*..checkWin: check if only bombs are left */
-void checkWin(void) {
+static void checkWin(void) {
   int row, col;
 
   for (row = 0; row < numRows; row++) {

@@ -10,6 +10,8 @@ import "fmt"
 // sequence: recursive function to print a number sequence
 func sequence(lower, upper int) {
 
+        // this version uses if/else
+
 	if lower > upper {
 		// invalid case 
 		return
@@ -26,6 +28,8 @@ func sequence(lower, upper int) {
 
 // sequence2: recursive function to print a number sequence
 func sequence2(lower, upper int) {
+
+        // this version uses switch
 
 	switch {
 	case lower > upper:

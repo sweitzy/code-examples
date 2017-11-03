@@ -119,11 +119,13 @@ static void walkAdjCells(BOOL (*test_func)(int row, int col), void (*action_func
   
 } /* walkAdjCells */ 
 
+#if 0
 /* ======================================================================== */
 /*..incrAdjBombs: increment adj bombs counter */
 static void incrAdjBombs(int row, int col) {
   theBoard[row][col].numAdjBombs++;
 } /* incrAdjBombs */
+#endif
 
 /* ======================================================================== */
 /*..initBoard: init the board */
@@ -261,8 +263,9 @@ static BOOL getMove(int *row, int *col) {
   fflush(stdout);
 
   if (fgets(line, sizeof(line), stdin) == NULL) {
-    printf("INVALID MOVE\n");
-    return FALSE;
+    printf("EOF: quitting\n");
+    exit(0);
+    //    return FALSE;
   } 
 
   if (sscanf(line, "%d %d", row, col) != 2) {
@@ -342,6 +345,8 @@ static void checkWin(void) {
 int main(int argc, char **argv) {
   int row = -1;
   int col = -1;
+
+  printf("Welcome to minesweeper.\n");
 
   initBoard();
 

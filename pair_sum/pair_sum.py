@@ -42,13 +42,17 @@ def has_pair_with_sum_slow(data, sum):
     # This version is slow, but does use less memory
     # due to no dictionary.
 
-    # TODO: more Pythonic way to do this?
-    for i in range(len(data)):
-        for j in range(i + 1, len(data)):
-            if data[i] + data[j] == sum:
-                return True
-    return False
+    # Pythonic way is to use a generator expression that will short circuit via any().
+    val = any(True for i in range(len(data)) for j in range(i + 1, len(data)) if data[i] + data[j] == sum)
+    return val
 
+# Non-Pythonic way
+
+#    for i in range(len(data)):
+#        for j in range(i + 1, len(data)):
+#            if data[i] + data[j] == sum:
+#                return True
+#    return False
 
 # validate documentation tests
 if __name__ == '__main__':

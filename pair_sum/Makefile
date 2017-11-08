@@ -1,3 +1,5 @@
+# Makefile: basically a script to clean up
+
 default:
 
 clean distclean:

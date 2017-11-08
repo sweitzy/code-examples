@@ -4,7 +4,7 @@ Interviewing in 2017 is quite a bit different from 2001, the last time I did it.
 
 After being in QA only for so long, it feels like getting back closer to development would be interesting again and a good career move.
 
-I hope these examples help spark others to ramp up or ramp back up their development skills.
+I hope these examples help spark others to ramp up or ramp back up their development skills.  The layout of the examples vary because I did them one by one over time, and kept refining my mental template for how to write code.
 
 ## Learn and Use Github
 
@@ -20,7 +20,7 @@ There is a free Git book online at https://git-scm.com/book
 
 When I started my career, the best place to learn was at the Computer Literacy bookstores.  Now everything is online, but I still like buying books sometimes.  But I haven't needed to buy books or take online courses to get ramped up on new languages.
 
-The Python online tutorial https://docs.python.org/3/tutorial/ is good.  The Go online tutorial https://tour.golang.org is even better.
+The Python online tutorial https://docs.python.org/3/tutorial/ is good.  The Go online tutorial https://tour.golang.org is also very good.
 
 ## Get a Free AWS Account
 

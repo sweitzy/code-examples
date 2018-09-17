@@ -9,6 +9,7 @@
  *  - mixed case with initial lower for static vars/funcs
  *  - lower case with underscore for local params/vars
  *  - // for one-line debug comments
+ *  - longer if/else style so debugger breakpoints can be used
  */
 
 /* TODO: in some .h file? */
@@ -67,7 +68,7 @@ static BOOL checkCellBomb(int row, int col) {
 static BOOL checkCellClear(int row, int col) {
   if (checkValidCell(row, col) \
       && !theBoard[row][col].hasBomb \
-      && FALSE == theBoard[row][col].visited) {
+      && !theBoard[row][col].visited) {
 
     /* non-bomb valid unvisited cell */
     if (0 == theBoard[row][col].numAdjBombs) {
